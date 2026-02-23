@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body, #root { height: 100%; }
+  body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    background: #030711;
+    color: #eef4ff;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::-webkit-scrollbar       { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #070e1a; }
+  ::-webkit-scrollbar-thumb { background: #1e2f4a; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2a4268; }
+  ::selection { background: rgba(13,150,242,.25); }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           rounded-xl font-semibold text-sm transition-all duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 hover:bg-brand-600 text-white
+           shadow-[0_0_20px_rgba(13,150,242,.3)]
+           hover:shadow-[0_0_30px_rgba(13,150,242,.45)]
+           hover:-translate-y-px active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent border border-border text-ink-300
+           hover:bg-surface-700 hover:text-ink-100 hover:border-border-bright;
+  }
+  .btn-danger {
+    @apply btn bg-red-500/10 border border-red-500/25 text-red-400
+           hover:bg-red-500/20 hover:border-red-500/40;
+  }
+  .btn-sm { @apply px-3.5 py-2 text-xs rounded-lg; }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full bg-surface-700 border border-border text-ink-100
+           placeholder-ink-600 rounded-xl px-4 py-3 text-sm
+           focus:outline-none focus:border-brand-500
+           focus:ring-2 focus:ring-brand-500/20 transition-all duration-150;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-surface-700 border border-border rounded-2xl;
+  }
+  .card-hover {
+    @apply card transition-all duration-200
+           hover:border-border-bright hover:-translate-y-0.5
+           hover:shadow-[0_8px_30px_rgba(0,0,0,.4)];
+  }
+
+  /* ── Nav ── */
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+           font-medium text-ink-400 hover:text-ink-100 hover:bg-surface-600
+           transition-all duration-150 cursor-pointer;
+  }
+  .nav-link-active {
+    @apply nav-link text-brand-300 bg-brand-500/10 border border-brand-500/20;
+  }
+
+  /* ── Badges ── */
+  .badge { @apply inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full; }
+  .badge-ready      { @apply badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20; }
+  .badge-processing { @apply badge bg-amber-500/10  text-amber-400  border border-amber-500/20;  }
+  .badge-pending    { @apply badge bg-ink-400/10    text-ink-400    border border-ink-400/20;    }
+  .badge-error      { @apply badge bg-red-500/10    text-red-400    border border-red-500/20;    }
+
+  /* ── Typing dots ── */
+  .dot {
+    @apply w-2 h-2 rounded-full bg-brand-400;
+    animation: blink 1.2s ease-in-out infinite;
+  }
+  .dot:nth-child(2) { animation-delay: .2s; }
+  .dot:nth-child(3) { animation-delay: .4s; }
+
+  /* ── Skeleton ── */
+  .skeleton {
+    background: linear-gradient(90deg, #0c1525 25%, #111e30 50%, #0c1525 75%);
+    background-size: 200% 100%;
+    @apply animate-shimmer rounded-lg;
+  }
+}
